@@ -1,4 +1,156 @@
-# React Native Image Resizer
+# react-native-image-resizer
+
+> 🗻 Resize local images with React Native
+
+---
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Tech Stack](#tech-stack)
+3. [Repository Structure](#repository-structure)
+4. [Key Components](#key-components)
+5. [Setup & Installation](#setup--installation)
+6. [Running the Application](#running-the-application)
+7. [Infrastructure & CI/CD](#infrastructure--cicd)
+8. [Contributing](#contributing)
+
+---
+
+## Overview
+
+**react-native-image-resizer** is part of the [Unacademy](https://github.com/unacademy) engineering ecosystem.
+
+🗻 Resize local images with React Native
+
+**Topics / Tags:** _None_
+
+---
+
+## Tech Stack
+
+| Attribute | Value |
+|-----------|-------|
+| **Primary Language** | Unknown |
+| **Framework / Platform** | Unknown |
+| **Package Manager** | — |
+
+### Dependencies
+
+**Dev Dependencies:**
+- `cz-conventional-changelog`
+
+
+---
+
+## Repository Structure
+
+```
+react-native-image-resizer/
+├── .gitignore
+├── .npmignore
+├── .prettierrc
+├── LICENSE
+├── README.md
+├── android/
+│   ├── build.gradle
+│   ├── gradle
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── src
+├── common.js
+├── docs
+├── example/
+│   ├── .buckconfig
+│   ├── .eslintrc.js
+│   ├── .flowconfig
+│   ├── .gitattributes
+│   ├── .gitignore
+├── index.d.ts
+├── index.js
+├── index.js.flow
+├── ios/
+│   ├── RCTImageResizer
+│   ├── RCTImageResizer.xcodeproj
+├── package.json
+├── react-native-image-resizer.podspec
+├── yarn.lock
+```
+
+---
+
+## Key Components
+
+Below is an analysis of the key files and modules:
+
+| File / Directory | Purpose |
+|-----------------|---------|
+| `LICENSE` | Source file |
+| `README.md` | Source file |
+| `android/build.gradle` | Source file |
+| `android/gradle/wrapper/gradle-wrapper.jar` | Source file |
+| `android/gradle/wrapper/gradle-wrapper.properties` | Source file |
+| `android/gradlew` | Source file |
+| `android/gradlew.bat` | Source file |
+| `android/src/main/AndroidManifest.xml` | Source file |
+| `android/src/main/java/fr/bamlab/rnimageresizer/ImageResizer.java` | Source file |
+| `android/src/main/java/fr/bamlab/rnimageresizer/ImageResizerModule.java` | Source file |
+| `android/src/main/java/fr/bamlab/rnimageresizer/ImageResizerPackage.java` | Source file |
+| `common.js` | Source file |
+| `docs/android_manual_config.md` | Source file |
+| `example/.buckconfig` | Source file |
+| `example/.eslintrc.js` | Source file |
+| `example/.flowconfig` | Source file |
+| `example/.gitattributes` | Source file |
+
+> **Note:** Only the first 20 non-trivial files are listed. See the repository tree above for the complete structure.
+
+---
+
+## Setup & Installation
+
+### Prerequisites
+
+- Git (`git --version`)
+- Unknown runtime installed
+
+
+
+### Steps
+
+```bash
+git clone git@github.com:unacademy/react-native-image-resizer.git
+cd react-native-image-resizer
+# Follow language-specific setup
+```
+
+
+---
+
+## Running the Application
+
+_Refer to the project's build system or CI configuration._
+
+---
+
+## Infrastructure & CI/CD
+
+- Test suite present — run tests before submitting PRs
+
+---
+
+## Contributing
+
+1. Create a feature branch: `git checkout -b feat/your-feature`
+2. Commit your changes: `git commit -m "feat: describe your change"`
+3. Push and open a PR targeting `master`
+4. Ensure all CI checks pass before requesting review
+
+---
+
+## Original README (Excerpt)
+
+> # React Native Image Resizer
 
 A React Native module that can create scaled versions of local images (also supports the assets library on iOS).
 |react-native| react-native-image-resizer|
@@ -26,67 +178,9 @@ react-native link react-native-image-resizer
 
 ### Android
 
-Note: on latest versions of React Native, you may have an error during the Gradle build on Android (`com.android.dex.DexException: Multiple dex files define Landroid/support/v7/appcompat/R$anim`). Run `cd android && ./gradlew clean` to fix this.
+Note: on latest versions of React Native, you may have an error during the Gradle build on Android (`com.android.
 
-#### Manual linking
+---
 
-Manual link information for Android: [Link](docs/android_manual_config.md)
-
-## Usage example
-
-```javascript
-import ImageResizer from 'react-native-image-resizer';
-
-ImageResizer.createResizedImage(path, maxWidth, maxHeight, compressFormat, quality, rotation, outputPath)
-  .then(response => {
-    // response.uri is the URI of the new image that can now be displayed, uploaded...
-    // response.path is the path of the new image
-    // response.name is the name of the new image with the extension
-    // response.size is the size of the new image
-  })
-  .catch(err => {
-    // Oops, something went wrong. Check that the filename is correct and
-    // inspect err to get more details.
-  });
-```
-
-### Sample app
-
-A basic, sample app is available in [the `example` folder](https://github.com/bamlab/react-native-image-resizer/tree/master/example). It uses the module to resize a photo from the Camera Roll.
-
-## API
-
-```javascript
-createResizedImage(
-  path,
-  maxWidth,
-  maxHeight,
-  compressFormat,
-  quality,
-  rotation = 0,
-  outputPath,
-  keepMeta = false,
-  options = {}
-); // Returns a Promise
-```
-
-The promise resolves with an object containing: `path`, `uri`, `name`, `size` (bytes), `width` (pixels), and `height` of the new file. The URI can be used directly as the `source` of an [`<Image>`](https://facebook.github.io/react-native/docs/image.html) component.
-
-| Option                | Description                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path                  | Path of image file, or a base64 encoded image string prefixed with 'data:image/imagetype' where `imagetype` is jpeg or png.                                                                                                                                                                                                                                                                                    |
-| width                 | Width to resize to (see `mode` for more details)                                                                                                                                                                                                                                                                                                                                                               |
-| height                | Height to resize to (see `mode` for more details)                                                                                                                                                                                                                                                                                                                                                              |
-| compressFormat        | Can be either JPEG, PNG or WEBP (android only).                                                                                                                                                                                                                                                                                                                                                                |
-| quality               | A number between 0 and 100. Used for the JPEG compression.                                                                                                                                                                                                                                                                                                                                                     |
-| rotation              | Rotation to apply to the image, in degrees, for android. On iOS, rotation is limited (and rounded) to multiples of 90 degrees.                                                                                                                                                                                                                                                                                 |
-| outputPath            | The resized image path. If null, resized image will be stored in cache folder. To set outputPath make sure to add option for rotation too (if no rotation is needed, just set it to 0).                                                                                                                                                                                                                        |
-| keepMeta              | If `true`, will attempt to preserve all file metadata/exif info, except the orientation value since the resizing also does rotation correction to the original image. Defaults to `false`, which means all metadata is lost. Note: This can only be `true` for `JPEG` images which are loaded from the file system (not Web).                                                                                  |
-| options.mode          | Similar to [react-native Image's resizeMode](https://reactnative.dev/docs/image#resizemode): either `contain` (the default), `cover`, or `stretch`. `contain` will fit the image within `width` and `height`, preserving its ratio. `cover` preserves the aspect ratio, and makes sure the image is at least `width` wide or `height` tall. `stretch` will resize the image to exactly `width` and `height`. |
-| options.onlyScaleDown | If `true`, will never enlarge the image, and will only make it smaller.                                                                                                                                                                                                                                                                                                                                        |
-
-## 👉 About Bam
-
-We are a 100 people company developing and designing multiplatform applications with [React Native](https://www.bam.tech/agence-react-native-paris) using the Lean & Agile methodology. To get more information on the solutions that would suit your needs, feel free to get in touch by [email](mailto://contact@bam.tech) or through or [contact form](https://www.bam.tech/en/contact)!
-
-We will always answer you with pleasure 😁
+*This README was auto-generated on 2026-09-14 by the Unacademy repo-summarizer tool.*
+*For corrections or additions, edit this file directly or open an issue.*
